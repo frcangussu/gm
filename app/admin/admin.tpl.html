@@ -1,0 +1,70 @@
+  <div class="container wrapper">
+
+    <!-- mensagens -->
+    <div>
+      <alert ng-repeat="message in cAdm.messages" type="message.type.TYPE" close="cAdm.closeMessage($index)">
+      <span class="glyphicon {{message.type.ICON}}" style="font-size: 20px;margin-right: 5px;"></span>
+      {{message.msg}}
+      </alert>
+    </div>
+
+
+    <!-- <logo></logo> -->
+    <!-- <menu></menu> -->
+
+    <!-- Template sem MENU -->
+    <div class="container semMenu" data-ng-if="cAdm.semMenu">
+      
+      <div data-ng-view="ng-view"></div> 
+      <br/>
+      <!-- Botão VOLTAR -->
+      <a onclick="document.location.href='/gm/'">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        Voltar
+      </a>
+
+    </div>
+
+    <!-- Template com MENU -->
+    <div class="row content" data-ng-if="!cAdm.semMenu">
+
+      <div class="col-lg-3 content-left" style="z-index:1;">
+        <!-- <search></search> -->
+        <!-- <categories value="ctrl.categorias"></categories> -->
+        <!-- <newest></newest> -->
+        <menu-lateral itens="[
+        {path: 'categoria', menu: 'Categoria'},
+        {path: 'filtro',   menu: 'Filtro'},
+        {path: 'generate', menu: 'Gerar Insert'}
+        ]"></menu-lateral>
+
+      </div>
+
+
+      <div class="col-lg-9 content-right" style="border: solid 1px #DDD;padding:10px;margin-left: -11px;border-radius:10px;">
+
+        <div data-ng-view="ng-view"></div> 
+
+        <!-- Botão VOLTAR -->
+        <a onclick="document.location.href='/gm/'">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          Voltar
+        </a>
+      </div>
+
+    </div>
+
+<!-- <rodape></rodape> -->
+
+</div>
+
+<style>
+  a {cursor:pointer;}
+  .semMenu{
+    width: 30%; 
+    min-width: 500px; 
+    padding: 0px 20px 20px 20px; 
+    border-radius: 10px; 
+    border: 1px solid #DDD;
+  }
+</style>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exemplo de login com Facebook em Javascript</title>
+        <meta charset="UTF-8">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function statusChangeCallback(response){
+                console.log('statusChangeCallback');
+                console.log(response);
+
+                if (response.status === "connected"){
+                    usuarioConectado();
+                } else if (response.status === "not_authorized" ) {
+                    document.getElementById('status').innerHTML = 'Favor faça o login neste app.';
+                } else {
+                    document.getElementById('status').innerHTML = 'Faça o seu login no Facebook.';
+                }
+            }
+
+            function checkLoginState(){
+                FB.getLoginStatus(function(response) {
+                    statusChangeCallback(response);
+                });
+            }
+
+            window.fbAsyncInit = function(){
+                FB.init({
+                    appId: '670784896387306',
+                    cookie: true,
+                    xfbml: true,
+                    version: 'v2.1'
+                });
+
+                FB.getLoginStatus(function(response){
+                    statusChangeCallback(response);
+                });
+            };
+
+            //Carregamento assincrono do SDK
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src="//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js,fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+            function usuarioConectado(){
+                FB.api('/me',function(response){
+                    $("#info").html(
+                          'Nome: '+ response.name +
+                          '<br>username: '+ response.username +
+                          '<br>Link Perfil: '+ response.link +
+                          '<br>Email: '+ response.email +
+                          '<br>Sexo: '+ response.gender +
+                          '<br>ID: '+ response.id
+                    );
+
+                    $("#foto").html('<img src="https://graph.facebook.com/"'+response.username+'/picture" alt="'+response.name+'" />');
+                });
+            }
+        </script>
+
+        <p id="info">Olá Visitante!</p>
+        <p id="foto"></p>
+
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+
+        <div id="status">
+        </div>
+
+    </body>
+</html>

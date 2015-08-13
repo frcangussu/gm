@@ -1,0 +1,47 @@
+<!-- Static navbar -->
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#czsale-navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <div style="background-color: #ddd;" class="collapse navbar-collapse" id="czsale-navbar">
+    <button class="btn btn-success navbar-btn 
+    add-classified-btn navbar-left" role="button" data-ng-click="ctrl.abrirAnuncio()">Anunciar</button>
+    <ul class="nav navbar-nav navbar-right">
+      
+      <!-- ADMIN -->
+      <li><a href="/gm/app/admin">Admin</a></li>
+
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="http://czsale.sensemedia.cz/index.html">Home page</a></li>
+          <li><a href="http://czsale.sensemedia.cz/addClassified.html">Add classified</a></li>
+          <li><a href="http://czsale.sensemedia.cz/category.html">Category page</a></li>
+          <li><a href="http://czsale.sensemedia.cz/detail.html">Classified detail</a></li>
+          <li><a href="http://czsale.sensemedia.cz/conditions.html">Rules &amp; Conditions</a></li>
+          <li><a href="http://czsale.sensemedia.cz/help.html">Help (FAQ)</a></li>
+          <li><a href="http://czsale.sensemedia.cz/contact.html">Contact</a></li>
+          <li><a href="http://czsale.sensemedia.cz/signUp.html">Sign Up</a></li>
+        </ul>
+      </li>
+      <li><a href="http://czsale.sensemedia.cz/help.html">Help</a></li>
+      <li><a href="http://czsale.sensemedia.cz/signUp.html">Sign Up</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle menu-entrar" data-toggle="dropdown" data-ng-click="ctrl.abrirLogin()">
+          Entrar
+          <i class="glyphicon glyphicon-log-in"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- /Static navbar --> 
+<style>
+.navbar-default .navbar-nav > li > a.menu-entrar      {color:#116E4E;}
+.navbar-default .navbar-nav > li > a.menu-entrar:hover{color:#0DA006 !important;}
+</style>

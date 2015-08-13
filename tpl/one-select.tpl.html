@@ -1,0 +1,20 @@
+<div class="btn-group">
+    <button class="btn btn-default" data-toggle="dropdown" 
+            style="width:{{width}}px;text-align:left;border-right:none;color: {{(ngModel) ? '#656565' : '#999;'}}">
+            {{ (ngModel) ? ngModel[field] : placeholder}} 
+    </button>
+    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="border-left:none;">
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+
+        <!-- Elemento vazio -->
+        <li data-ng-click="selecionar(null)"><a style="color:#E36E6E"><span class="glyphicon glyphicon-remove-circle"></span>Nenhum&nbsp;</a></li>
+
+        <!-- lista -->
+        <li ng-repeat="item in list" data-ng-click="selecionar(item)">
+            <a>{{item[field]}}</a>
+        </li>
+
+    </ul>
+</div>

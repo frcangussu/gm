@@ -1,0 +1,42 @@
+<div class="controls row content">
+	<div class="col-md-5">
+
+		<input class="form-control" required="true" type="text" 
+		id="nome" name="nome" placeholder="Número de casas"
+		data-ng-model="cGen.nrCasas" 
+		/>
+
+		<br/>
+		<div class="col-xs-11 input-group">
+			<div class="input-group-addon">Da rua "A" até a rua: </div>
+			<input type="text" ng-model="cGen.rua" class="form-control pull-left col-md-3" placeholder="Z" fw-focus-me='focoRua'>
+			<div class="input-group-addon" data-ng-click="cGen.adicionarRua()">
+				<span class="glyphicon glyphicon-ok"></span>
+			</div>
+		</div>
+
+		<br/>
+		<div ng-show="cGen.listaRua.length>0">
+			<span class="input-group-addon">Ruas:</span>
+			<span class="input-group-addon" ng-repeat="(i, rua) in cGen.listaRua">{{rua}}</span>
+		</div>
+		
+		<div class="col-md-5">
+			<button type="button" value="Gerar" class="form-control btn-success" data-ng-click="cGen.gerarSql()">
+				Gerar
+				<i class="glyphicon glyphicon-play-circle"></i>
+			</button>
+		</div>
+		
+	</div>
+
+</div>
+
+<br><br><br>
+<div id="resultado" fw-select-event="click" style="cursor:pointer;">
+	<div ng-show="cGen.sql" ng-repeat="(i, v) in cGen.sql">{{v}}</div>
+</div>
+
+<style type="text/css">
+	.input-group-addon{cursor:pointer;}
+</style>

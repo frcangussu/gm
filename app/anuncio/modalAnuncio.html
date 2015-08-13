@@ -1,0 +1,25 @@
+<div class="controls row content">
+	<div class="col-md-5">
+	    
+	    <input class="form-control" required="true" type="text" 
+	    	   id="nome" name="nome" placeholder="Nome da Categoria"
+	    	   data-ng-model="registro.nome" 
+	    	   data-ng-class="{error: registro.nome.$invalid && !registro.nome.$pristine}"/>
+	</div>
+
+	<div class="col-md-7" data-ng-show="!ctrl.filhos.length">
+	    <button class="btn" data-ng-show="registro.id"  data-ng-disabled="ctrl.addFilho==true"
+	    		data-ng-click="ctrl.addFilho=true; desabilitarBotoes();">
+	        <span aria-hidden="true" class="glyphicon glyphicon-indent-left"></span>
+	        Add Subitem
+	    </button>
+	</div>
+
+</div>
+
+<style>
+.modal-dialog {
+    width :50%;
+    min-width: 1000px;
+}
+</style>

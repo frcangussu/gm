@@ -1,0 +1,43 @@
+<span data-ng-init="
+arrImg = [
+'/gm/img/themes/CZSale/slide-00.jpg',
+'/gm/img/themes/CZSale/slide-01.jpg',
+'/gm/img/themes/CZSale/slide-02.jpg'
+]"></span>
+
+<h4>Featured</h4>
+<div style="overflow: hidden; display: block;" id="slides">
+
+  <div style="overflow: hidden; position: relative; width: 823px; height: 274.333px;" class="slidesjs-container">
+    <div style="position: relative; left: 0px; width: 823px; height: 274.333px;" class="slidesjs-control">
+      
+      <img slidesjs-index="0" class="carousel" class="slidesjs-slide" data-ng-repeat="img in arrImg" src="{{img}}" >
+
+    </div>
+  </div>
+
+  <a class="slidesjs-previous slidesjs-navigation">
+    <i class="glyphicon glyphicon-chevron-left icon-large"></i>
+  </a>
+  <a class="slidesjs-next slidesjs-navigation">
+    <i class="glyphicon glyphicon-chevron-right icon-large"></i>
+  </a>
+  
+  <ul class="slidesjs-pagination">
+    <li class="slidesjs-pagination-item">
+      <a class="" data-slidesjs-item="0">1</a>
+    </li>
+    <li class="slidesjs-pagination-item">
+      <a class="" data-slidesjs-item="1">2</a>
+    </li>
+    <li class="slidesjs-pagination-item">
+      <a class="active" data-slidesjs-item="2">3</a>
+    </li>
+  </ul>
+</div>
+
+<style>
+.carousel{
+  position: absolute; top: 0px; left: 0px; width: 100%; z-index: 0;
+}
+</style>

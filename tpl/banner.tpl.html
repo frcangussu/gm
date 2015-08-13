@@ -1,0 +1,32 @@
+<div style="width: 846px;">
+        <div id="myBanner" class="carousel slide" data-ride="banner">
+  
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+              <li data-target="#myBanner" 
+                  ng-repeat="img in images" 
+                  class="{active : (img === images[0])}" 
+                  data-slide-to="{{$index}}"></li>
+          </ol>
+
+          <div class="carousel-inner">
+              <div ng-class="{item: true, active : (img === images[0])}" ng-repeat="img in images">
+                
+                  <img ng-src="img/banner/{{img}}" alt="Slide numder {{img}}">
+
+                  <div class="container">
+                      <div class="carousel-caption"> </div>
+                  </div>
+              </div>
+          </div>
+  
+          <a class="left carousel-control" href="#myBanner" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+
+          <a class="right carousel-control" href="#myBanner" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+          </a> 
+
+        </div>
+</div>

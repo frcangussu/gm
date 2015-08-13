@@ -1,0 +1,90 @@
+<!-- fonte: http://embed.plnkr.co/ggnZZm/preview -->
+<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+<section>
+    
+    <div class="col-xs-6 input-group">
+        <input type="text" ng-model="search" class="form-control pull-left col-md-2" placeholder="Search">
+        <div class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </div>
+    </div>
+
+    <!-- <a href="http://embed.plnkr.co/ggnZZm/preview" class="pull-left" target="_blank" style="margin:4px;color:blue;">(Fonte)</a> -->
+
+</section>
+<br/>
+<table ng-table="tableParams" class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>
+                <!-- Inserir novo registro -->
+                <button ng-click="cCat.open()" class="btn btn-success pull-right btn-sm">
+                    <span aria-hidden="true" class="glyphicon glyphicon-plus-sign"></span>
+                    Adicionar
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="(id, categoria) in cCat.categorias track by $index | filter:search | orderBy:'name'">
+            <td data-title="'Nome'">
+                <span ng-if="!categoria.$edit">{{categoria.nome}}</span>
+                <div ng-if="categoria.$edit"><input class="form-control" type="text" ng-model="categoria.nome" /></div>
+            </td>
+            <td data-title="'Actions'" width="200">
+                <a ng-if="!categoria.$edit" href="" class="btn btn-primary btn-xs" ng-click="cCat.open(categoria)">
+                    <span aria-hidden="true" class="glyphicon glyphicon-edit"></span>
+                    Editar
+                </a>
+                <a ng-if="!categoria.$destroy" ng-click="cCat.excluir(categoria)" class="btn btn-default btn-xs">
+                    <span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
+                    Remover
+                </a>
+                <a ng-if="categoria.$edit" href="" class="btn btn-primary btn-xs" ng-click="cCat.save()">Save</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<modal tabela="categoria" 
+       atualizar="cCat.consultar" 
+       titulo="Cadastrar Categoria" 
+       tpl="categoria/modalEditarCategoria.html" 
+       ctrl="cCat.ctrlModal"></modal>
+
+<!--
+<script type="text/ng-template" id="add_categoria_modal">
+    <div class="modal-header">
+        <h3>Cadastrar Categoria</h3>
+    </div>
+    <div class="modal-body">
+        <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+        <form name="userForm" class="form-horizontal">
+            
+            <div class="control-group">
+                <label class="control-label" for="nome">Name</label>
+                <div class="controls">
+                    categoria:
+                    <input id="nome" name="nome" ng-model="categoria.nome" type="text" placeholder="Name" class="input-xlarge" required="true"  
+                        ng-class="{error: categoria.nome.$invalid && !categoria.nome.$pristine}"/>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        
+        <button ng-click="save()" ng-if="categoria.id" ng-disabled="categoria.$invalid" class="btn btn-primary">
+            <i class="icon-white icon-plus"></i> Save
+        </button>
+        
+        <button ng-click="add()" type="submit" ng-if="!categoria.id" ng-disabled="categoria.$invalid" class="btn btn-primary">
+            <i class="icon-white icon-plus"></i>Add
+        </button>
+        
+        <button ng-click="cancel()" class="btn">Cancel</button>
+    </div>
+</script>
+-->

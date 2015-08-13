@@ -1,0 +1,15 @@
+<h4>Menu</h4>
+<div class="list-group categories">
+
+	<a class="list-group-item" data-ng-repeat="item in itens" data-ng-class="{active: (menuAtivo == item.path)}" data-ng-click="navegar(item.path)">
+
+  		{{item.menu}}
+
+  		<!-- se ativo -->
+  		<span class="glyphicon glyphicon-folder-open" data-ng-show="menuAtivo == item.path"></span>
+
+  		<!-- se não ativo -->
+  		<span class="glyphicon glyphicon-chevron-right" data-ng-hide="menuAtivo == item.path"></span>
+
+  	</a>
+</div>

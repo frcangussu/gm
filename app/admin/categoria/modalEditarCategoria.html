@@ -1,0 +1,112 @@
+<div class="controls row content">
+	<div class="col-md-5">
+	    
+	    <input class="form-control" required="true" type="text" 
+	    	   id="nome" name="nome" placeholder="Nome da Categoria"
+	    	   data-ng-model="registro.nome" 
+	    	   data-ng-class="{error: registro.nome.$invalid && !registro.nome.$pristine}"/>
+	</div>
+
+	<div class="col-md-7" data-ng-show="!ctrl.filhos.length">
+	    <button class="btn" data-ng-show="registro.id"  data-ng-disabled="ctrl.addFilho==true"
+	    		data-ng-click="ctrl.addFilho=true; desabilitarBotoes();">
+	        <span aria-hidden="true" class="glyphicon glyphicon-indent-left"></span>
+	        Add Subitem
+	    </button>
+	</div>
+
+</div>
+<br>
+<div data-ng-show="registro.id">
+	<ul>
+		<li style="border-bottom:solid 1px silver;padding:5px;" data-ng-repeat="filho in ctrl.filhos">
+			
+			<span data-ng-hide="ctrl.emEdicao.nome==filho.nome" ng-dblclick="ctrl.emEdicao=filho">
+				{{filho.nome}}
+			</span>
+
+		    <input required="true" type="text" style="margin:-4px;border:solid 1px silver;border-radius:5px;"
+		    	   id="nome" name="nome" 
+		    	   placeholder="nome"
+		    	   data-ng-model="ctrl.emEdicao.nome" 
+		    	   data-ng-class="{error: registro.nome.$invalid && !registro.nome.$pristine}"
+		    	   data-ng-show="ctrl.emEdicao.nome==filho.nome"
+		    	   />
+
+		    <!-- Botões EDITAR / EXCLUIR -->
+			<div class="pull-right" data-ng-hide="ctrl.emEdicao.nome==filho.nome">
+				<span data-ng-repeat="modalidade in ctrl.modalidades" style="margin:10px;">
+					<input type="checkbox" style="margin:0px;" 
+						   data-ng-model="ctrl.modalidadesCategoria[filho.id][modalidade.id]"
+						   data-ng-click="ctrl.salvarModalidade(filho.id,modalidade.id);">
+						   <!-- {{filho.id}} - {{modalidade.id}} -->
+					<label style="font-weight:normal;cursor:pointer;" for="modalidade_{{filho.id}}_{{modalidade.id}}">
+						{{modalidade.nome}}
+					</label>
+				</span>
+				
+				<button class="btn btn-xs btn-warning" title="Editar"
+						data-ng-disabled="ctrl.addFilho"
+						data-ng-click="ctrl.emEdicao=filho">
+					<i class="glyphicon glyphicon-edit"/>
+				</button>
+
+				<button class="btn btn-xs btn-warning" title="Exluir" 
+						data-ng-disabled="ctrl.addFilho"
+						data-ng-click="ctrl.excluir(filho.id)">
+
+					<i class="glyphicon glyphicon-trash"/>
+
+				</button>
+			</div>
+
+		    <!-- Botões ALTERAR / CANCELAR -->
+			<div class="pull-right" data-ng-show="ctrl.emEdicao.nome==filho.nome">
+				
+				<button class="btn btn-xs btn-warning" title="Alterar"
+						data-ng-click="ctrl.alterar(filho)">
+					<i class="glyphicon glyphicon-ok"/>
+				</button>
+
+				<button class="btn btn-xs btn-warning" title="Cancelar"
+						data-ng-click="ctrl.emEdicao=0">
+
+					<i class="glyphicon glyphicon-ban-circle"/>
+
+				</button>
+			</div>
+
+		</li>
+	</ul>
+	
+	<!-- salvar Filho -->
+	<div class="col-md-11 input-group" style="margin-left: 39px;" data-ng-show="ctrl.addFilho">
+		
+		<!-- Filho -->
+		<input  id="filho" name="filho" data-ng-model="ctrl.emEdicao.nome" type="text" 
+				placeholder="inserir categoria de {{registro.nome}}" 
+				class="form-control input-sm" 
+				data-ng-class="{error: cCat.filho.$invalid && !cCat.filho.pristine}"> 
+		
+		<span class="input-group-btn">
+			
+			<!-- Botao Salvar -->
+			<button class="btn btn-sm btn-success" title="Salvar" data-ng-click="ctrl.salvar(registro.id)"> <i class="glyphicon glyphicon-ok"/></button>
+			
+			<!-- Botao Cancelar -->
+			<button class="btn btn-sm" title="Cancelar" data-ng-click="ctrl.addFilho = false; habilitarBotoes();">
+				<i class="glyphicon glyphicon-remove"/>
+			</button>
+
+		</span>
+
+	</div>
+
+	<div data-ng-show="!ctrl.addFilho && ctrl.filhos.length">
+		<button class="pull-right btn btn-xs btn btn-warning" data-ng-click="ctrl.addFilho=true; desabilitarBotoes();">
+			<i class="glyphicon glyphicon-indent-left" />
+			Adicionar Subitem
+		</button>
+	</div>
+	<br/>
+</div>

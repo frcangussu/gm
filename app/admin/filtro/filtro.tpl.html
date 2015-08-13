@@ -1,0 +1,82 @@
+<!-- fonte: http://embed.plnkr.co/ggnZZm/preview -->
+<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+<section>
+    
+    <div class="col-xs-6 input-group">
+        <input type="text" ng-model="search" class="form-control pull-left col-md-2" placeholder="Search">
+        <div class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </div>
+    </div>
+
+    <!-- <a href="http://embed.plnkr.co/ggnZZm/preview" class="pull-left" target="_blank" style="margin:4px;color:blue;">(Fonte)</a> -->
+
+</section>
+<br/>
+<table ng-table="tableParams" class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>
+                <!-- Inserir novo registro -->
+                <button ng-click="cFil.open()" class="btn btn-success pull-right btn-sm">
+                    <span aria-hidden="true" class="glyphicon glyphicon-plus-sign"></span>
+                    Adicionar
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="(id, filtro) in cFil.filtros | filter:search | orderBy:'name'">
+            <td data-title="'Nome'">
+                <span ng-if="!filtro.$edit">{{filtro.nome}}</span>
+                <div ng-if="filtro.$edit"><input class="form-control" type="text" ng-model="filtro.nome" /></div>
+            </td>
+            <td data-title="'Actions'" width="200">
+                <a ng-if="!filtro.$edit" href="" class="btn btn-primary btn-xs" ng-click="cFil.open(filtro)">
+                    <span aria-hidden="true" class="glyphicon glyphicon-edit"></span>
+                    Editar
+                </a>
+                <a ng-if="!filtro.$destroy" ng-click="cFil.removeRecord(filtro.$id)" class="btn btn-default btn-xs">
+                    <span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
+                    Remover
+                </a>
+                <a ng-if="filtro.$edit" href="" class="btn btn-primary btn-xs" ng-click="cFil.save()">Save</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script type="text/ng-template" id="add_filtro_modal">
+    <div class="modal-header">
+        <h3>Cadastrar Filtro</h3>
+    </div>
+    <div class="modal-body">
+        <!--<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>-->
+        <form name="userForm" class="form-horizontal">
+            
+            <div class="control-group">
+                <label class="control-label" for="nome">Name</label>
+                <div class="controls">
+                    filtro:
+                    <input id="nome" name="nome" ng-model="filtro.nome" type="text" placeholder="Name" class="input-xlarge" required="true"  
+                        ng-class="{error: filtro.nome.$invalid && !filtro.nome.$pristine}"/>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        
+        <button ng-click="save()" ng-if="filtro.id" ng-disabled="filtro.$invalid" class="btn btn-primary">
+            <i class="icon-white icon-plus"></i> Save
+        </button>
+        
+        <button ng-click="add()" type="submit" ng-if="!filtro.id" ng-disabled="filtro.$invalid" class="btn btn-primary">
+            <i class="icon-white icon-plus"></i>Add
+        </button>
+        
+        <button ng-click="cancel()" class="btn">Cancel</button>
+    </div>
+</script>

@@ -1,0 +1,61 @@
+<div class="container wrapper">
+<!-- {{cHome.categorias | json}} -->
+
+  <!-- <logo></logo> -->
+
+  <menu ctrl="cHome"></menu>
+
+  <div class="row content">
+    
+    <div class="col-lg-3 content-left">
+      <search></search>
+      <categories value="cHome.categorias"></categories>
+      <newest></newest>
+    </div>
+    
+    
+    <div class="col-lg-9 content-right">
+      
+      <!-- <featured></featured> -->
+      <!-- <gm-banner></gm-banner> -->
+      <carousel interval="cHome.myInterval">
+        <slide ng-repeat="slide in cHome.slides" active="slide.active">
+          <img ng-src="{{slide.imagem}}" style="margin:auto;">
+          <div class="carousel-caption">
+            <!-- <h4>Slide {{$index}}</h4> -->
+            <p>{{slide.texto}}</p>
+          </div>
+        </slide>
+      </carousel>
+      
+      <recomended></recomended>
+
+    </div>
+
+  </div>
+
+  <modal tabela="anuncio" 
+         atualizar="cHome.consultar" 
+         titulo="Anunciar" 
+         tpl="app/anuncio/modalAnuncio.html" 
+         ctrl="cHome.ctrlModalAnuncio"></modal>
+
+  <modal tabela="login" 
+         atualizar="cHome.consultar" 
+         titulo="Login" 
+         tpl="app/login/modalLogin.html" 
+         ctrl="cHome.ctrlModalLogin"></modal>
+
+  <modal tabela="usuario" 
+         atualizar="cHome.consultar" 
+         titulo="Cadastro de Usuários" 
+         tpl="app/usuario/modalUsuario.html" 
+         ctrl="cHome.ctrlModalUsuario"></modal>
+
+<!-- <rodape></rodape> -->
+
+</div>
+
+<style>
+a {cursor:pointer;}
+</style>

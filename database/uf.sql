@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS "uf";
+CREATE TABLE "uf" ("codigo" INTEGER PRIMARY KEY  NOT NULL  UNIQUE , "nome" varchar(25));
+INSERT INTO "uf" VALUES(11,'Rondônia');
+INSERT INTO "uf" VALUES(12,'Acre');

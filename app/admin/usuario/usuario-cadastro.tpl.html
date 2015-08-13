@@ -1,0 +1,75 @@
+<!-- <script type="text/javascript" src="/fw/public/jQueryPictureCutMaster/src/jquery.picture.cut.js"></script> -->
+
+<h2>Cadastro de Morador {{cUsu.teste}}</h2>
+
+<!-- CROPPIC - Image crop -->
+<div class="row">
+	<div class="col-lg-4" style="width:205px;">
+		<div id="cropContainerEyecandy" style="background-image:url('//ssl.gstatic.com/accounts/ui/avatar_2x.png');width: 192px; height: 192px;margin-top:-1px;"></div>
+	</div>
+</div>
+
+<div class="card card-container">
+
+	
+	<p class="profile-name-card" id="profile-name"></p>
+	<form class="form-signin" name="formulario">
+		
+		<input type="text" placeholder="Nome" data-ng-model="cUsu.dados.nome" class="form-control" />
+		
+		<gm-select width="434"
+			table-name="viewQuadra"
+			ng-model="cUsu.quadraSelecionada"
+			placeholder="Quadra / Condominio" ng-required="true"></gm-select>
+
+        <input type="text" class="form-control" placeholder="Endereço" ng-required="true"
+        	typeahead-on-select="cUsu.setEndereco($item)"
+        	ng-model="cUsu.enderecoSelecionado" 
+	        typeahead="ender['display'] for ender in cUsu.listaEnderecos | filter:$viewValue | limitTo:50"
+	    >
+
+		<input type="text"		data-ng-model="cUsu.dados.fone_residencial" class="form-control" data-ui-mask="Fone Residencial: (99)9999-9999" ng-required="true"/>
+		<input type="text"		data-ng-model="cUsu.dados.fone_celular" class="form-control" data-ui-mask="Fone Celular: (99)9999-9999" ng-required="true"/>
+		<input type="email"		placeholder="E-mail"			data-ng-model="cUsu.dados.email"		class="form-control" ng-required="true"/>
+		<input type="password"	placeholder="Senha"				data-ng-model="cUsu.dados.senha"		class="form-control" ng-required="true"/>
+
+        <button class="btn btn-success pull-right" data-ng-click="cUsu.salvar()">Salvar
+            <span class="glyphicon glyphicon-ok"></span>
+        </button>
+
+	</form><!-- /form -->
+	<div>&nbsp;</div>
+</div><!-- /card-container -->
+
+
+<style>
+.modal-dialog {
+    width :25%;
+    min-width: 350px;
+}
+
+input[type=file]{
+	cursor:pointer !important;
+}
+
+</style>
+
+<script>
+var croppicContainerEyecandyOptions = {
+		uploadUrl:'../croppic/img_save_to_file.php',
+		cropUrl:  '../croppic/img_crop_to_file.php',
+		//imgEyecandy:true,
+		doubleZoomControls:false,
+		rotateControls: false,
+		loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
+		onError: function(errormsg){ alert(errormsg); console.clear(); console.log(this) },
+		onAfterImgUpload: 	function(){ 
+			this.imgUrl = this.imgUrl.split("/");
+			this.imgUrl = "temp/"+this.imgUrl[this.imgUrl.length-1];
+		},
+		onAfterImgCrop: function(){
+			this.imgUrl  = 	"usuario/"+this.imgUrl;
+		}
+}
+var cropContainerEyecandy = new Croppic('cropContainerEyecandy', croppicContainerEyecandyOptions);
+</script>

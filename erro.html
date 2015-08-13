@@ -1,0 +1,19 @@
+<html><head><title>Slim Application Error</title><style>body{margin:0;padding:30px;font:12px/1.5 Helvetica
+,Arial,Verdana,sans-serif;}h1{margin:0;font-size:48px;font-weight:normal;line-height:48px;}strong{display
+:inline-block;width:65px;}</style></head><body><h1>Slim Application Error</h1><p>The application could
+ not run because of the following error:</p><h2>Details</h2><div><strong>Type:</strong> ErrorException
+</div><div><strong>Code:</strong> 4096</div><div><strong>Message:</strong> Object of class stdClass could
+ not be converted to string</div><div><strong>File:</strong> /var/www/gm/database/Dados.php</div><div
+><strong>Line:</strong> 72</div><h2>Trace</h2><pre><div>#0 /var/www/gm/database/Dados.php(72): Slim\Slim
+::handleErrors(4096, 'Object of class...', '/var/www/gm/dat...', 72, Array)</div><div>#1 [internal function
+]: Dados->parseType('enderecoSelecio...', Object(stdClass), 'TEXTO')</div><div>#2 /var/www/gm/database
+/Dados.php(91): array_map('Dados::parseTyp...', Array, Array, Array)</div><div>#3 /var/www/gm/database
+/Dados.php(114): Dados->prepararDados('morador', Object(stdClass))</div><div>#4 /var/www/gm/rest/index
+.php(68): Dados->inserir('morador', Object(stdClass))</div><div>#5 [internal function]: {closure}('inserir'
+, 'morador')</div><div>#6 /var/www/fw/public/Slim/Route.php(468): call_user_func_array(Object(Closure
+), Array)</div><div>#7 /var/www/fw/public/Slim/Slim.php(1357): Slim\Route->dispatch()</div><div>#8 /var
+/www/fw/public/Slim/Middleware/Flash.php(85): Slim\Slim->call()</div><div>#9 /var/www/fw/public/Slim
+/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()</div><div>#10 /var/www/fw/public/Slim
+/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()</div><div>#11 /var/www/fw
+/public/Slim/Slim.php(1302): Slim\Middleware\PrettyExceptions->call()</div><div>#12 /var/www/gm/rest
+/index.php(76): Slim\Slim->run()</div><div>#13 {main}</pre></body></html>

@@ -1,0 +1,35 @@
+<script type="text/ng-template" id="add_modal">
+        
+    <i class="glyphicon glyphicon-remove-circle" style="float:right;margin:4px;font-size:24px;cursor:pointer;" data-ng-click="cancel()"/>
+
+    <div class="modal-header" ng-if="titulo" style="border: none;padding: 0px 0px 0px 13px;">
+        <h3>{{titulo}}</h3>
+    </div>
+    <div class="modal-body">
+        <!--<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>-->
+        <form name="userForm" class="form-horizontal">
+            
+            <div class="control-group" data-ng-include src="tpl"></div>
+
+        </form>
+    </div>
+    
+    <div class="modal-footer">
+        
+        <button ng-click="save()" ng-if="registro.id" ng-disabled="tabela.$invalid || buttonDisabled" class="btn btn-primary">
+            <span class="glyphicon glyphicon-ok"></span>
+            Salvar
+        </button>
+        
+        <button ng-click="add()" type="submit" ng-if="!registro.id" ng-disabled="registro.$invalid || buttonDisabled" class="btn btn-primary">
+            <span class="glyphicon glyphicon-ok"></span>
+            Cadastrar
+        </button>
+        
+        <button ng-click="cancel()" class="btn">
+            <span class="glyphicon glyphicon-remove"></span>
+            Cancelar
+        </button>
+    </div>
+
+</script>
